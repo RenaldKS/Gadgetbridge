@@ -310,7 +310,7 @@ public class GBDevice implements Parcelable {
     }
 
     public boolean isConnected() {
-        return mState.equalsOrHigherThan(State.CONNECTED);
+        return mState == State.SCANNED || mState.equalsOrHigherThan(State.CONNECTED);
     }
 
     public boolean isInitializing() {
