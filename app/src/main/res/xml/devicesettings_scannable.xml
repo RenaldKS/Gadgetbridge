@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        android:title="Scannable debounce timeout (seconds)"
+        android:summary="After being scanned, the device will stick as scanned and ignored for the specified amount of time"
+        android:key="devicesetting_scannable_debounce"
+        android:inputType="number" />
+
+</PreferenceScreen>

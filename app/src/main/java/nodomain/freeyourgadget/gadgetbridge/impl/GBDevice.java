@@ -318,7 +318,7 @@ public class GBDevice implements Parcelable {
     }
 
     public boolean isInitialized() {
-        return mState.equalsOrHigherThan(State.INITIALIZED);
+        return mState == State.SCANNED || mState.equalsOrHigherThan(State.INITIALIZED);
     }
 
     public boolean isConnecting() {
@@ -726,6 +726,7 @@ public class GBDevice implements Parcelable {
 
     public enum State {
         NOT_CONNECTED(R.string.not_connected),
+        SCANNED(R.string.state_scanned),
         WAITING_FOR_RECONNECT(R.string.waiting_for_reconnect),
         WAITING_FOR_SCAN(R.string.device_state_waiting_scan),
         CONNECTING(R.string.connecting),

@@ -114,6 +114,11 @@ public abstract class AbstractDeviceCoordinator implements DeviceCoordinator {
         return ConnectionType.BOTH;
     }
 
+    @Override
+    public boolean isConnectable(){
+        return true;
+    }
+
     @NonNull
     @Override
     public Collection<? extends ScanFilter> createBLEScanFilters() {

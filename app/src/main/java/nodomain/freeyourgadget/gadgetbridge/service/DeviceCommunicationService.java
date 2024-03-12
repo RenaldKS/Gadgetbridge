@@ -382,6 +382,21 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
                     return;
                 }
 
+                if(!target.getDeviceCoordinator().isConnectable()){
+                    SharedPreferences prefs = GBApplication.getDeviceSpecificSharedPrefs(target.getAddress());
+                    long timeoutSeconds = Long.parseLong(prefs.getString("devicesetting_scannable_debounce", "60"));
+                    target.setState(GBDevice.State.SCANNED);
+                    target.sendDeviceUpdateIntent(DeviceCommunicationService.this, GBDevice.DeviceUpdateSubject.CONNECTION_STATE);
+                    new Handler().postDelayed(() -> {
+                        if(target.getState() != GBDevice.State.SCANNED){
+                            return;
+                        }
+                        target.setState(GBDevice.State.WAITING_FOR_SCAN);
+                        target.sendDeviceUpdateIntent(DeviceCommunicationService.this, GBDevice.DeviceUpdateSubject.CONNECTION_STATE);
+                    }, timeoutSeconds * 1000);
+                    return;
+                }
+
                 connectToDevice(target);
             }
         }
@@ -501,6 +516,11 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
     }
 
     private void connectToDevice(GBDevice device, boolean firstTime){
+        if(!device.getDeviceCoordinator().isConnectable()){
+            GB.toast("Cannot connect to Scannable Device", Toast.LENGTH_SHORT, GB.INFO);
+            return;
+        }
+
         List<GBDevice> gbDevs = null;
         boolean fromExtra = false;
 
