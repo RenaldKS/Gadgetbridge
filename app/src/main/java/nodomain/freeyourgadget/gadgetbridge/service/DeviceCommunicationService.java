@@ -270,19 +270,24 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
 
     private final String COMMAND_BLUETOOTH_CONNECT = "nodomain.freeyourgadget.gadgetbridge.BLUETOOTH_CONNECT";
     private final String ACTION_DEVICE_CONNECTED = "nodomain.freeyourgadget.gadgetbridge.BLUETOOTH_CONNECTED";
+    private final String ACTION_DEVICE_SCANNED = "nodomain.freeyourgadget.gadgetbridge.BLUETOOTH_SCANNED";
     private final int NOTIFICATIONS_CACHE_MAX = 10;  // maximum amount of notifications to cache per device while disconnected
     private boolean allowBluetoothIntentApi = false;
     private boolean reconnectViaScan = GBPrefs.RECONNECT_SCAN_DEFAULT;
 
-    private void sendDeviceConnectedBroadcast(String address){
+    private void sendDeviceAPIBroadcast(String address, String action){
         if(!allowBluetoothIntentApi){
             GB.log("not sending API event due to settings", GB.INFO, null);
             return;
         }
-        Intent intent = new Intent(ACTION_DEVICE_CONNECTED);
+        Intent intent = new Intent(action);
         intent.putExtra("EXTRA_DEVICE_ADDRESS", address);
 
         sendBroadcast(intent);
+    }
+
+    private void sendDeviceConnectedBroadcast(String address){
+        sendDeviceAPIBroadcast(address, ACTION_DEVICE_CONNECTED);
     }
 
     BroadcastReceiver bluetoothCommandReceiver = new BroadcastReceiver() {
@@ -368,6 +373,8 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
                     LOG.debug("device state update reason");
                     sendDeviceConnectedBroadcast(device.getAddress());
                     sendCachedNotifications(device);
+                }else if(subject == GBDevice.DeviceUpdateSubject.CONNECTION_STATE && (device.getState() == GBDevice.State.SCANNED)){
+                    sendDeviceAPIBroadcast(device.getAddress(), ACTION_DEVICE_SCANNED);
                 }
             }else if(BLEScanService.EVENT_DEVICE_FOUND.equals(action)){
                 String deviceAddress = intent.getStringExtra(BLEScanService.EXTRA_DEVICE_ADDRESS);
