@@ -390,8 +390,15 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
                 }
 
                 if(!target.getDeviceCoordinator().isConnectable()){
+                    int actualRSSI = intent.getIntExtra(BLEScanService.EXTRA_RSSI, 0);
                     SharedPreferences prefs = GBApplication.getDeviceSpecificSharedPrefs(target.getAddress());
                     long timeoutSeconds = Long.parseLong(prefs.getString("devicesetting_scannable_debounce", "60"));
+                    int thresholdRSSI = Integer.parseInt(prefs.getString("devicesetting_scannable_rssi", "-100"));
+
+                    if(actualRSSI < thresholdRSSI){
+                        return;
+                    }
+
                     target.setState(GBDevice.State.SCANNED);
                     target.sendDeviceUpdateIntent(DeviceCommunicationService.this, GBDevice.DeviceUpdateSubject.CONNECTION_STATE);
                     new Handler().postDelayed(() -> {
