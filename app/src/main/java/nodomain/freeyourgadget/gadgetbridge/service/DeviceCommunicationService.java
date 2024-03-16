@@ -393,10 +393,12 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
 
                 if(!target.getDeviceCoordinator().isConnectable()){
                     int actualRSSI = intent.getIntExtra(BLEScanService.EXTRA_RSSI, 0);
-                    SharedPreferences prefs = GBApplication.getDeviceSpecificSharedPrefs(target.getAddress());
-                    long timeoutSeconds = Long.parseLong(prefs.getString("devicesetting_scannable_debounce", "60"));
-                    long minimumUnseenSeconds = Long.parseLong(prefs.getString("devicesetting_scannable_unseen", "0"));
-                    int thresholdRSSI = Integer.parseInt(prefs.getString("devicesetting_scannable_rssi", "-100"));
+                    Prefs prefs = new Prefs(
+                            GBApplication.getDeviceSpecificSharedPrefs(target.getAddress())
+                    );
+                    long timeoutSeconds = prefs.getLong("devicesetting_scannable_debounce", 60);
+                    long minimumUnseenSeconds = prefs.getLong("devicesetting_scannable_unseen", 0);
+                    int thresholdRSSI = prefs.getInt("devicesetting_scannable_rssi", -100);
 
                     if(actualRSSI < thresholdRSSI){
                         LOG.debug("ignoring {} since RSSI is too low ({} < {})", deviceAddress, actualRSSI, thresholdRSSI);
