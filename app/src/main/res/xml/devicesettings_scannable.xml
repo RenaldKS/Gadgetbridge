@@ -4,22 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditTextPreference
-        android:title="Scannable debounce timeout (seconds)"
-        android:summary="After being scanned, the device will stick as scanned and ignored for the specified amount of time"
+        android:title="@string/devicesetting_scannable_debounce"
+        android:summary="@string/devicesetting_scannable_debounce_summary"
         android:key="devicesetting_scannable_debounce"
         android:defaultValue="60"
         android:inputType="number" />
 
     <EditTextPreference
-        android:title="Unseen timeout (seconds)"
-        android:summary="After being scanned, the device has to be unseen for this amount of time before being registered again"
+        android:title="@string/devicesetting_scannable_minimum_unseen"
+        android:summary="@string/devicesetting_scannable_minimum_unseen_summary"
         android:key="devicesetting_scannable_unseen"
         android:defaultValue="0"
         android:inputType="number" />
 
     <EditTextPreference
-        android:title="min RSSI"
-        android:summary="the minimum RSSI threshold for detection"
+        android:title="@string/devicesetting_scannable_rssi"
+        android:summary="@string/devicesetting_scannable_rssi_summary"
         android:key="devicesetting_scannable_rssi"
         android:defaultValue="-100"
         android:min="-100"

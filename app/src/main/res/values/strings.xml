@@ -2699,4 +2699,10 @@
     <string name="notification_channel_scan_service_name">Scan service</string>
     <string name="devicetype_scannable">Scannable device</string>
     <string name="state_scanned">Scanned</string>
+    <string name="devicesetting_scannable_debounce">Scannable debounce timeout (seconds)</string>
+    <string name="devicesetting_scannable_minimum_unseen">Minimum unseen time (seconds)</string>
+    <string name="devicesetting_scannable_rssi">minimal RSSI threshold</string>
+    <string name="devicesetting_scannable_debounce_summary">After being scanned, the device will stick as scanned and ignored for the specified amount of time</string>
+    <string name="devicesetting_scannable_minimum_unseen_summary">After being scanned, the device has to be unseen for this amount of time before being registered again</string>
+    <string name="devicesetting_scannable_rssi_summary">the minimum RSSI threshold for detection</string>
 </resources>
