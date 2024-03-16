@@ -255,6 +255,8 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
 
     private OsmandEventReceiver mOsmandAidlHelper = null;
 
+    private HashMap<String, Long> deviceLastScannedTimestamps = new HashMap<>();
+
     private final String[] mMusicActions = {
             "com.android.music.metachanged",
             "com.android.music.playstatechanged",
@@ -393,10 +395,23 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
                     int actualRSSI = intent.getIntExtra(BLEScanService.EXTRA_RSSI, 0);
                     SharedPreferences prefs = GBApplication.getDeviceSpecificSharedPrefs(target.getAddress());
                     long timeoutSeconds = Long.parseLong(prefs.getString("devicesetting_scannable_debounce", "60"));
+                    long minimumUnseenSeconds = Long.parseLong(prefs.getString("devicesetting_scannable_unseen", "0"));
                     int thresholdRSSI = Integer.parseInt(prefs.getString("devicesetting_scannable_rssi", "-100"));
 
                     if(actualRSSI < thresholdRSSI){
+                        LOG.debug("ignoring {} since RSSI is too low ({} < {})", deviceAddress, actualRSSI, thresholdRSSI);
                         return;
+                    }
+
+                    Long lastSeenTimestamp = deviceLastScannedTimestamps.get(deviceAddress);
+                    deviceLastScannedTimestamps.put(deviceAddress, System.currentTimeMillis());
+
+                    if(lastSeenTimestamp != null){
+                        long secondsSince = (System.currentTimeMillis() - lastSeenTimestamp) / 1000;
+                        if(secondsSince < minimumUnseenSeconds){
+                            LOG.debug("ignoring {}, since only {} seconds passed (< {})", deviceAddress, secondsSince, minimumUnseenSeconds);
+                            return;
+                        }
                     }
 
                     target.setState(GBDevice.State.SCANNED);
@@ -405,6 +420,7 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
                         if(target.getState() != GBDevice.State.SCANNED){
                             return;
                         }
+                        deviceLastScannedTimestamps.put(target.getAddress(), System.currentTimeMillis());
                         target.setState(GBDevice.State.WAITING_FOR_SCAN);
                         target.sendDeviceUpdateIntent(DeviceCommunicationService.this, GBDevice.DeviceUpdateSubject.CONNECTION_STATE);
                     }, timeoutSeconds * 1000);

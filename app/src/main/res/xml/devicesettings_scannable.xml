@@ -11,6 +11,13 @@
         android:inputType="number" />
 
     <EditTextPreference
+        android:title="Unseen timeout (seconds)"
+        android:summary="After being scanned, the device has to be unseen for this amount of time before being registered again"
+        android:key="devicesetting_scannable_unseen"
+        android:defaultValue="0"
+        android:inputType="number" />
+
+    <EditTextPreference
         android:title="min RSSI"
         android:summary="the minimum RSSI threshold for detection"
         android:key="devicesetting_scannable_rssi"
