@@ -726,9 +726,9 @@ public class GBDevice implements Parcelable {
 
     public enum State {
         NOT_CONNECTED(R.string.not_connected),
-        SCANNED(R.string.state_scanned),
         WAITING_FOR_RECONNECT(R.string.waiting_for_reconnect),
         WAITING_FOR_SCAN(R.string.device_state_waiting_scan),
+        SCANNED(R.string.state_scanned),
         CONNECTING(R.string.connecting),
         CONNECTED(R.string.connected, R.string.connecting),
         INITIALIZING(R.string.initializing, R.string.connecting),
