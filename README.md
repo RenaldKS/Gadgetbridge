@@ -1,6 +1,6 @@
 Using Gadgetbridge as a base app for my final project of making an android app who monitors heartbeat and gives warning if it reach the threshold to remind the user.
 
-=======================================================================================================================
+===========================================================================
 Gadgetbridge is now hosted on [codeberg.org](https://codeberg.org/Freeyourgadget/Gadgetbridge/).
 
 <a href="https://codeberg.org/Freeyourgadget/Gadgetbridge/">
