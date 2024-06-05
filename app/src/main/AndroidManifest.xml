@@ -111,7 +111,7 @@
         android:theme="@style/GadgetbridgeTheme"
         tools:replace="android:label">
         <activity
-            android:name=".activities.ControlCenterv2"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_controlcenter"
             android:theme="@style/SplashTheme"
             android:launchMode="singleTop"
@@ -124,6 +124,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.ControlCenterv2"
+            android:label="@string/title_activity_controlcenter"
+            android:theme="@style/SplashTheme"
+            android:launchMode="singleTop"
+            android:exported="true">
+            <!-- Other intent filters can remain here -->
+        </activity>
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:label="@string/register_activity_label"
+            android:parentActivityName=".activities.LoginActivity" />
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
