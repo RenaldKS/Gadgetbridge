@@ -344,6 +344,14 @@ public class DebugActivity extends AbstractGBActivity {
 
             }
         });
+        Button testAlarmButton = findViewById(R.id.testAlarmButton);
+        testAlarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DebugActivity.this, AlarmActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Button setWeatherButton = findViewById(R.id.setWeatherButton);
         setWeatherButton.setOnClickListener(new View.OnClickListener() {
@@ -1179,5 +1187,6 @@ public class DebugActivity extends AbstractGBActivity {
         }
 
     }
+
 
 }

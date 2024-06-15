@@ -2710,4 +2710,5 @@
     <string name="scan_scanning_multiple_devices">Scanning %d devices</string>
     <string name="notification_channel_scan_service_name">Scan service</string>
     <string name="register_activity_label">Register</string>
+    <string name="title_activity_alarm">AlarmActivity</string>
 </resources>

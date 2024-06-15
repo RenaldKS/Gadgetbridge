@@ -430,6 +430,11 @@
             android:label="@string/prefs_wena3_notification_per_app_settings_title"
             android:parentActivityName=".activities.app_specific_notifications.AppSpecificNotificationSettingsActivity"
             />
+        <activity
+            android:name=".activities.AlarmActivity"
+            android:label="@string/title_activity_alarm"
+            />
+
 
         <service
             android:name=".externalevents.NotificationListener"

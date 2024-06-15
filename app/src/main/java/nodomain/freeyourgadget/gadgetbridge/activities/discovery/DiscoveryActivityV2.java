@@ -1,4 +1,4 @@
-/*  Copyright (C) 2023-2024 Andreas Böhler, Daniel Dakhno, José Rebelo
+        /*  Copyright (C) 2023-2024 Andreas Böhler, Daniel Dakhno, José Rebelo
 
     This file is part of Gadgetbridge.
 
