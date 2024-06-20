@@ -17,7 +17,7 @@
             android:defaultValue="60"
             android:dependency="inactivity_warnings_enable"
             android:inputType="number"
-            android:key="inactivity_warnings_threshold"
+                                android:key="inactivity_warnings_threshold"
             android:maxLength="2"
             android:title="@string/mi2_prefs_inactivity_warnings_threshold" />
 

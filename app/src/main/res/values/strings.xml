@@ -126,6 +126,7 @@
     <string name="appmanager_download_app_error">Error downloading app</string>
     <!-- Strings related to AppBlacklist -->
     <string name="title_activity_notification_management">Notification settings</string>
+    <string name="title_activity_Heartrate_management">Heartrate Alert</string>
     <string name="blacklist_all_for_notifications">Blacklist all for notifications</string>
     <string name="whitelist_all_for_notifications">Whitelist all for notifications</string>
     <string name="check_all_applications">Check all applications</string>
@@ -703,6 +704,7 @@
     <string name="heartrate_bpm_40">40 bpm</string>
     <string name="heartrate_bpm_45">45 bpm</string>
     <string name="heartrate_bpm_50">50 bpm</string>
+ ]  <string name="heartrate_bpm_80"> 80 bpm</string>
     <string name="heartrate_bpm_100">100 bpm</string>
     <string name="heartrate_bpm_105">105 bpm</string>
     <string name="heartrate_bpm_110">110 bpm</string>

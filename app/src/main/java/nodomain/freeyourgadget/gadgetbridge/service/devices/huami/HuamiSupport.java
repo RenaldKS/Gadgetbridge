@@ -134,6 +134,7 @@ import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fet
 import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fetch.FetchHeartRateManualOperation;
 import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fetch.FetchHeartRateMaxOperation;
 import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fetch.FetchHeartRateRestingOperation;
+import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fetch.HeartRateListener;
 import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fetch.FetchPaiOperation;
 import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fetch.FetchSleepRespiratoryRateOperation;
 import nodomain.freeyourgadget.gadgetbridge.service.devices.huami.operations.fetch.FetchSpo2NormalOperation;
@@ -4028,6 +4029,9 @@ public abstract class HuamiSupport extends AbstractBTLEDeviceSupport implements 
 
         return this;
     }
+
+
+
 
     protected void writeToChunked(TransactionBuilder builder, int type, byte[] data) {
         if (force2021Protocol() && type > 0) {

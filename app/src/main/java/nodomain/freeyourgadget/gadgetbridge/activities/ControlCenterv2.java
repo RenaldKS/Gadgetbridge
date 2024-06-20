@@ -441,6 +441,10 @@ public class ControlCenterv2 extends AppCompatActivity
                 Intent blIntent = new Intent(this, NotificationManagementActivity.class);
                 startActivity(blIntent);
                 return false;
+            case R.id.action_Heartrate_management:
+                Intent hrIntent = new Intent(this, AlarmActivity.class);
+                startActivity(hrIntent);
+                return false;
             case R.id.device_action_discover:
                 launchDiscoveryActivity();
                 return false;

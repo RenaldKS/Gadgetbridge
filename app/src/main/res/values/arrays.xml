@@ -2573,6 +2573,7 @@
     </string-array>
 
     <string-array name="prefs_miband_heartrate_alert_threshold">
+        <item name="80">@string/heartrate_bpm_80</item>
         <item name="100">@string/heartrate_bpm_100</item>
         <item name="105">@string/heartrate_bpm_105</item>
         <item name="110">@string/heartrate_bpm_110</item>
@@ -2587,6 +2588,7 @@
     </string-array>
 
     <string-array name="prefs_miband_heartrate_alert_threshold_values">
+        <item>80</item>
         <item>100</item>
         <item>105</item>
         <item>110</item>

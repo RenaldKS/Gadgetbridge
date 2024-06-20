@@ -1,18 +1,16 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
+        google() // This should be first to ensure the plugin can be found
         mavenCentral()
-        google()
         maven {
             url 'https://plugins.gradle.org/m2/'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.4.2'
-
         classpath 'gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.17'
+        classpath 'com.google.gms:google-services:4.3.10' // Ensure this is correct
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -20,10 +18,10 @@ buildscript {
 
 allprojects {
     repositories {
+        google() // Make sure Google repository is listed here as well
         mavenCentral()
         maven {
             url 'https://jitpack.io'
         }
-        google()
     }
 }

@@ -430,10 +430,7 @@
             android:label="@string/prefs_wena3_notification_per_app_settings_title"
             android:parentActivityName=".activities.app_specific_notifications.AppSpecificNotificationSettingsActivity"
             />
-        <activity
-            android:name=".activities.AlarmActivity"
-            android:label="@string/title_activity_alarm"
-            />
+
 
 
         <service
@@ -568,6 +565,11 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activities.NotificationManagementActivity"
+            android:label="@string/title_activity_notification_management"
+            android:parentActivityName=".activities.ControlCenterv2"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activities.AlarmActivity"
             android:label="@string/title_activity_notification_management"
             android:parentActivityName=".activities.ControlCenterv2"
             android:windowSoftInputMode="stateHidden" />

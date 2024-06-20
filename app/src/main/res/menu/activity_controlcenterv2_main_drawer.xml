@@ -16,6 +16,9 @@
         <item android:id="@+id/action_notification_management"
             android:title="@string/title_activity_notification_management"
             android:icon="@drawable/ic_notifications" />
+        <item android:id="@+id/action_Heartrate_management"
+            android:title="@string/title_activity_Heartrate_management"
+            android:icon="@drawable/ic_heartrate" />
         <item android:id="@+id/device_action_discover"
             android:title="@string/action_discover"
             android:iconTint="#7E7E7E"

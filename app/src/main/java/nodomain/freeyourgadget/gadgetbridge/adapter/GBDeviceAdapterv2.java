@@ -1478,4 +1478,13 @@ public class GBDeviceAdapterv2 extends ListAdapter<GBDevice, GBDeviceAdapterv2.V
             return idMapping.get(str);
         }
     }
+    public interface OnHeartRateChangedListener {
+        void onHeartRateChanged(int heartRate);
+    }
+
+    private OnHeartRateChangedListener onHeartRateChangedListener;
+
+    public void setOnHeartRateChangedListener(OnHeartRateChangedListener listener) {
+        this.onHeartRateChangedListener = listener;
+    }
 }
