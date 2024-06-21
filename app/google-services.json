@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "546486883808",
-    "project_id": "smartschiz",
-    "storage_bucket": "smartschiz.appspot.com"
+    "project_number": "325461915088",
+    "project_id": "smart-schiz",
+    "storage_bucket": "smart-schiz.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:546486883808:android:97aa71418ca8b3d0a2c785",
+        "mobilesdk_app_id": "1:325461915088:android:a85ff1eb491128f41f35d5",
         "android_client_info": {
-          "package_name": "nodomain.freeyourgadget.gadgetbridge.zeyrex.smartschiz"
+          "package_name": "com.zeyrex.gadgetbridge.smartschizo"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDvo8n2Nrjq5muUGikaSoIPECfNg5FH4yg"
+          "current_key": "AIzaSyCOhEqIuNU6WFzLoduuwP9ZpSZE-Ks_mUo"
         }
       ],
       "services": {

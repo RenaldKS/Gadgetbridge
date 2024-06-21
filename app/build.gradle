@@ -6,7 +6,7 @@ apply plugin: "com.android.application"
 apply plugin: "com.github.spotbugs"
 apply plugin: "pmd"
 apply plugin: 'com.google.protobuf'
-apply plugin: 'com.google.gms.google-services'
+
 
 def ABORT_ON_CHECK_FAILURE = true
 
@@ -83,7 +83,7 @@ android {
     namespace 'nodomain.freeyourgadget.gadgetbridge'
 
     defaultConfig {
-        applicationId "nodomain.freeyourgadget.gadgetbridge.zeyrex.smartschiz"
+        applicationId "com.zeyrex.gadgetbridge.smartschizo"
 
         //noinspection OldTargetApi
         targetSdkVersion 33
@@ -262,6 +262,7 @@ dependencies {
 
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
 }
+apply plugin: 'com.google.gms.google-services'
 
 preBuild.dependsOn(":GBDaoGenerator:genSources")
 

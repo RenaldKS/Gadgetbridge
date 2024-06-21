@@ -40,9 +40,11 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -68,6 +70,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,6 +105,8 @@ import nodomain.freeyourgadget.gadgetbridge.util.DeviceHelper;
 import nodomain.freeyourgadget.gadgetbridge.util.GB;
 import nodomain.freeyourgadget.gadgetbridge.util.Prefs;
 
+
+
 //TODO: extend AbstractGBActivity, but it requires actionbar that is not available
 public class ControlCenterv2 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GBActivity {
@@ -113,6 +118,8 @@ public class ControlCenterv2 extends AppCompatActivity
     public static final String ACTION_REQUEST_LOCATION_PERMISSIONS
             = "nodomain.freeyourgadget.gadgetbridge.activities.controlcenter.requestlocationpermissions";
     private static PhoneStateListener fakeStateListener;
+    private static final String TAG = "ControlCenterv2";
+
 
     //needed for KK compatibility
     static {
@@ -429,49 +436,56 @@ public class ControlCenterv2 extends AppCompatActivity
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivityForResult(settingsIntent, MENU_REFRESH_CODE);
                 return false; //we do not want the drawer menu item to get selected
-            case R.id.action_debug:
-                Intent debugIntent = new Intent(this, DebugActivity.class);
-                startActivity(debugIntent);
-                return false;
-            case R.id.action_data_management:
-                Intent dbIntent = new Intent(this, DataManagementActivity.class);
-                startActivity(dbIntent);
-                return false;
-            case R.id.action_notification_management:
-                Intent blIntent = new Intent(this, NotificationManagementActivity.class);
-                startActivity(blIntent);
-                return false;
+//            case R.id.action_debug:
+//                Intent debugIntent = new Intent(this, DebugActivity.class);
+//                startActivity(debugIntent);
+//                return false;
+//            case R.id.action_data_management:
+//                Intent dbIntent = new Intent(this, DataManagementActivity.class);
+//                startActivity(dbIntent);
+//                return false;
+//            case R.id.action_notification_management:
+//                Intent blIntent = new Intent(this, NotificationManagementActivity.class);
+//                startActivity(blIntent);
+//                return false;
             case R.id.action_Heartrate_management:
                 Intent hrIntent = new Intent(this, AlarmActivity.class);
                 startActivity(hrIntent);
                 return false;
-            case R.id.device_action_discover:
-                launchDiscoveryActivity();
-                return false;
-            case R.id.action_quit:
-                GBApplication.quit();
-                return false;
+//            case R.id.device_action_discover:
+//                launchDiscoveryActivity();
+//                return false;
+//            case R.id.action_quit:
+//                GBApplication.quit();
+//                return false;
             case R.id.donation_link:
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://liberapay.com/Gadgetbridge")); //TODO: centralize if ever used somewhere else
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
                 return false;
-            case R.id.external_changelog:
-                GBChangeLog cl = createChangeLog();
-                try {
-                    if (cl.hasChanges(false)) {
-                        cl.getMaterialLogDialog().show();
-                    } else {
-                        cl.getMaterialFullLogDialog().show();
-                    }
-                } catch (Exception ignored) {
-                    GB.toast(getBaseContext(), "Error showing Changelog", Toast.LENGTH_LONG, GB.ERROR);
-                }
-                return false;
+//            case R.id.external_changelog:
+//                GBChangeLog cl = createChangeLog();
+//                try {
+//                    if (cl.hasChanges(false)) {
+//                        cl.getMaterialLogDialog().show();
+//                    } else {
+//                        cl.getMaterialFullLogDialog().show();
+//                    }
+//                } catch (Exception ignored) {
+//                    GB.toast(getBaseContext(), "Error showing Changelog", Toast.LENGTH_LONG, GB.ERROR);
+//                }
+//                return false;
             case R.id.about:
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
                 startActivity(aboutIntent);
                 return false;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                GBApplication.getPrefs().getPreferences().edit().putBoolean("logged_in", false).apply();
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                startActivity(loginIntent);
+                finish();
+                return true;
         }
 
         return false;
@@ -826,4 +840,5 @@ public class ControlCenterv2 extends AppCompatActivity
             return builder.create();
         }
     }
-}
+};
+
